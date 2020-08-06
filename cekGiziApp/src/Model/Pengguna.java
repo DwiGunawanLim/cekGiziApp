@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class Pengguna {
+public class Pengguna extends Connector{
     private String namaOrtu;
     private String alamatOrtu;
     private String noHpOrtu;
@@ -64,7 +64,7 @@ public class Pengguna {
         PreparedStatement pstm = null;
         Connection conn = (Connection) Connector.configDB();
         
-        String sql = "UPDATE pengguna SET nama_ortu=?, alamat_ortu=?, no_hp_ortu=? where nama_anak=?";
+        String sql = "UPDATE pengguna SET nama_ortu=?, alamat_ortu=?, no_hp_ortu=? WHERE nama_anak=?";
         try{
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, getnamaOrtu());

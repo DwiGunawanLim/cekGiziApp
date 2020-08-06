@@ -8,6 +8,11 @@ import Model.Connector;
 import Model.Pengguna;
 import View.FormPengguna;
 import Controller.PenggunaController;
+import Model.Hasil;
+import View.FormHasil;
+import Controller.HasilController;
+import View.MENU;
+import Controller.MenuController;
 /**
  *
  * @author ucul
@@ -18,13 +23,28 @@ public class cekGiziApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Pengguna data = new Pengguna();
-        FormPengguna form = new FormPengguna();
-        PenggunaController ctrl = new PenggunaController(data, form);
+        // PENGGUNA
+        Pengguna dataPengguna = new Pengguna();
+        FormPengguna formPengguna = new FormPengguna();
+        PenggunaController ctrlPengguna = new PenggunaController(dataPengguna, formPengguna);
         
-        ctrl.KosongFormPengguna();
-        ctrl.TampilDataFormPengguna();
-        form.setVisible(true);
+        ctrlPengguna.KosongFormPengguna();
+        ctrlPengguna.TampilDataFormPengguna();
+        formPengguna.setVisible(false);
+        
+        // HASIL
+        Hasil dataHasil = new Hasil();
+        FormHasil formHasil = new FormHasil();
+        HasilController ctrlHasil = new HasilController(dataHasil, formHasil);
+        
+        ctrlHasil.KosongFormHasil();
+        ctrlHasil.TampilDataFormHasil();
+        ctrlHasil.ComboNamaAnak();
+        formHasil.setVisible(false);
+        
+        // MENU
+        MENU menu = new MENU();
+        MenuController ctrlMenu = new MenuController(menu);
+        menu.setVisible(true);
     }
-    
 }

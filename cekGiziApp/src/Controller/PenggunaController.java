@@ -2,7 +2,12 @@ package Controller;
 
 import Model.Connector;
 import Model.Pengguna;
+import Model.Hasil;
 import View.FormPengguna;
+import View.MENU;
+import View.FormHasil;
+import Controller.HasilController;
+import cekGiziApp.cekGiziApp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -22,6 +27,7 @@ public class PenggunaController implements ActionListener, MouseListener{
     private Pengguna model;
     private FormPengguna form;
     
+    
     public PenggunaController(Pengguna model, FormPengguna form){
         this.model = model;
         this.form = form;
@@ -30,6 +36,8 @@ public class PenggunaController implements ActionListener, MouseListener{
         this.form.btnSimpan.addActionListener(this);
         this.form.btnHapus.addActionListener(this);
         this.form.btnEdit.addActionListener(this);
+        this.form.btnCekGizi.addActionListener(this);
+        this.form.btnBack.addActionListener(this);
     }
     
     public void KosongFormPengguna(){
@@ -69,9 +77,12 @@ public class PenggunaController implements ActionListener, MouseListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         if(ae.getSource() == form.btnTambah){
+            //UNTUK MENAMBAH USER ( KOSONGKAN FORM )
             KosongFormPengguna();
         } else if(ae.getSource() == form.btnSimpan){
+            // SIMPAN DATA USER YANG ADA DI KOLOM TEXT AREA
             model.setnamaOrtu(form.txtnamaOrtu.getText());
             model.setalamatOrtu(form.txtalamatOrtu.getText());
             model.setnoHpOrtu(form.txtnoHpOrtu.getText());
@@ -87,6 +98,7 @@ public class PenggunaController implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, e);
             }
         } else if (ae.getSource() == form.btnEdit) {
+            // EDIT DATA USER YANG ADA DI KOLOM TEXT AREA
             model.setnamaOrtu(form.txtnamaOrtu.getText());
             model.setalamatOrtu(form.txtalamatOrtu.getText());
             model.setnoHpOrtu(form.txtnoHpOrtu.getText());
@@ -101,7 +113,24 @@ public class PenggunaController implements ActionListener, MouseListener{
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
+        } else if (ae.getSource() == form.btnCekGizi) {
+            //MENUJU KE CEK GIZI
+            Hasil modelHasil = new Hasil();
+            FormHasil formHasil = new FormHasil();
+            HasilController ctrlHasil = new HasilController(modelHasil, formHasil);
+            ctrlHasil.KosongFormHasil();
+            ctrlHasil.TampilDataFormHasil();
+            ctrlHasil.ComboNamaAnak();
+            formHasil.setVisible(true);
+            form.setVisible(false);
+        } else if (ae.getSource() == form.btnBack) {
+            //MENUJU KE MENU UTAMA
+            MENU menu = new MENU();
+            MenuController ctrl = new MenuController(menu);
+            menu.setVisible(true);
+            form.setVisible(false);
         } else {
+            // HAPUS DATA USER YANG ADA DI KOLOM TEXT AREA
             model.setnamaAnak(form.txtnamaAnak.getText());
             
             try {
