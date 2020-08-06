@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2020 at 07:02 AM
+-- Generation Time: Aug 06, 2020 at 01:38 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -41,8 +41,9 @@ CREATE TABLE `hasil` (
 --
 
 INSERT INTO `hasil` (`nama_anak`, `jenis_kelamin_anak`, `berat_anak`, `tinggi_anak`, `umur_anak`, `hasil_cek_anak`) VALUES
+('Flo', 'Wanita', 9, 52, 7, 'Ini adalah test hasil 2'),
 ('Gunawan', 'Pria', 8, 48, 5, 'Ini adalah aplikasi cek gizi anak'),
-('Flo', 'Wanita', 9, 52, 7, 'Ini adalah test hasil 2');
+('Test', 'Perempuan', 8, 56, 12, 'Berat Badan Anak Normal. Tinggi Badan Anak Diatas Normal. Anak Normal. ');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,8 @@ CREATE TABLE `pengguna` (
 
 INSERT INTO `pengguna` (`nama_ortu`, `alamat_ortu`, `no_hp_ortu`, `nama_anak`) VALUES
 ('Ayah', 'Jl. Rumah', '081313131313', 'Flo'),
-('Ibu', 'Jl. Rumah', '081244078282', 'Gunawan');
+('Ibu', 'Jl. Rumah', '081244078282', 'Gunawan'),
+('Test', 'Rumah', '081244444444', 'Test');
 
 --
 -- Indexes for dumped tables
@@ -73,6 +75,7 @@ INSERT INTO `pengguna` (`nama_ortu`, `alamat_ortu`, `no_hp_ortu`, `nama_anak`) V
 -- Indexes for table `hasil`
 --
 ALTER TABLE `hasil`
+  ADD PRIMARY KEY (`nama_anak`),
   ADD KEY `FOREIGN` (`nama_anak`);
 
 --
